@@ -1,0 +1,22 @@
+{
+  "scoreboard": {
+    "left": {
+      "side": "left",
+      "scores": 0,
+      "title": "player 1"
+    },
+    "right": {
+      "side": "right",
+      "scores": 0,
+      "title": "player 2"
+    }
+  },
+  "battlefield": {},
+  "settings": {
+    "dimensions": [
+      10,
+      10
+    ]
+  },
+  "wasDestroyed": []
+}
