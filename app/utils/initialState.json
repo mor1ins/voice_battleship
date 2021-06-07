@@ -1,24 +1,20 @@
 {
   "shipTypes": {
     "carrier": {
-      "size": 5,
-      "count": 1
-    },
-    "battleship": {
       "size": 4,
       "count": 1
     },
-    "cruiser": {
+    "battleship": {
       "size": 3,
-      "count": 1
+      "count": 2
+    },
+    "cruiser": {
+      "size": 2,
+      "count": 3
     },
     "submarine": {
-      "size": 3,
-      "count": 1
-    },
-    "destroyer": {
-      "size": 2,
-      "count": 1
+      "size": 1,
+      "count": 4
     }
   },
   "layout": [
@@ -26,13 +22,43 @@
       "ship": "carrier",
       "positions": [
         [
-          2,
-          9
+          0,
+          3
         ],
         [
-          3,
-          9
+          0,
+          4
         ],
+        [
+          0,
+          5
+        ],
+        [
+          0,
+          6
+        ]
+      ]
+    },
+    {
+      "ship": "battleship",
+      "positions": [
+        [
+          3,
+          6
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          6
+        ]
+      ]
+    },
+    {
+      "ship": "battleship",
+      "positions": [
         [
           4,
           9
@@ -48,23 +74,15 @@
       ]
     },
     {
-      "ship": "battleship",
+      "ship": "cruiser",
       "positions": [
         [
-          5,
-          2
+          3,
+          0
         ],
         [
-          5,
-          3
-        ],
-        [
-          5,
-          4
-        ],
-        [
-          5,
-          5
+          3,
+          1
         ]
       ]
     },
@@ -72,16 +90,25 @@
       "ship": "cruiser",
       "positions": [
         [
-          8,
-          1
-        ],
-        [
-          8,
+          9,
           2
         ],
         [
-          8,
+          9,
           3
+        ]
+      ]
+    },
+    {
+      "ship": "cruiser",
+      "positions": [
+        [
+          5,
+          3
+        ],
+        [
+          5,
+          4
         ]
       ]
     },
@@ -89,29 +116,35 @@
       "ship": "submarine",
       "positions": [
         [
-          3,
+          7,
           0
-        ],
-        [
-          3,
-          1
-        ],
-        [
-          3,
-          2
         ]
       ]
     },
     {
-      "ship": "destroyer",
+      "ship": "submarine",
       "positions": [
         [
-          0,
-          0
-        ],
+          7,
+          7
+        ]
+      ]
+    },
+    {
+      "ship": "submarine",
+      "positions": [
         [
-          1,
-          0
+          2,
+          8
+        ]
+      ]
+    },
+    {
+      "ship": "submarine",
+      "positions": [
+        [
+          9,
+          9
         ]
       ]
     }
