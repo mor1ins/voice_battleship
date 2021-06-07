@@ -102,14 +102,9 @@ class SpeechRecognizer {
     words = words.filter(s => s !== 'Мимо');
 
     if (words && words.length === 1) {
-      if (words[0] === 'Попал') {
-        this.store.dispatch(Hit());
-        this.store.dispatch(
-          Turn([
-            Math.floor(Math.random() * 10),
-            Math.floor(Math.random() * 10),
-          ]),
-        );
+      if (words[0] === 'Попал' || words[0] === 'Убит') {
+        this.store.dispatch(Hit(words[0] === 'Убит'));
+        this.store.dispatch(Turn());
       }
     } else if (words && words.length > 1) {
       const [x, y] = wordsToPosition(words[1], words[0]);

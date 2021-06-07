@@ -96,12 +96,55 @@ const rootReducer = (state = {}, action) => {
         scoreboard: (isCellHited && scoreboard) || state.scoreboard,
       };
     case MAKE_TURN:
+      action.position = [
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 10),
+      ];
+      console.log('Enemy Battlefield:');
+      action.enemy.enemyBattlefield.forEach(field => console.log(field));
       console.log('Make turn on ' + action.position);
       let [x, y] = action.position;
       y = numberToChar(y);
       setTimeout(() => Tts.speak(`${y} ${x}`), 1000);
+      action.enemy.lastFire = action.position;
       return {...state};
     case MAKE_HIT:
+      console.log(`Make hit on ${action.enemy.lastFire}`);
+      console.log('Enemy Battlefield:');
+      action.enemy.enemyBattlefield.forEach(field => console.log(field));
+      let [fire_x, fire_y] = action.enemy.lastFire;
+      action.enemy.enemyBattlefield[fire_x][fire_y] = 1;
+      let neighbours = [
+        [-1, 0],
+        [0, -1],
+        [1, 0],
+        [0, 1],
+      ];
+      let queue = [[fire_x, fire_y]];
+      let junk = [];
+      if (action.destroyed) {
+        while (queue.length > 0) {
+          console.log(`queue: ${queue}`);
+          console.log(`junk: ${junk}`);
+          let [ship_x, ship_y] = queue.pop();
+          junk.push([ship_x, ship_y]);
+          action.enemy.enemyBattlefield[ship_x][ship_y] = 2;
+          neighbours.forEach(neighbour => {
+            const [n_x, n_y] = [neighbour[0] + ship_x, neighbour[1] + ship_y];
+            if (n_x >= 0 && n_x <= 9 && n_y >= 0 && n_y <= 9) {
+              console.log(`neighbour: ${n_x}, ${n_y} (state = ${action.enemy.enemyBattlefield[n_x][n_y]})`);
+              if (
+                action.enemy.enemyBattlefield[n_x][n_y] === 1 &&
+                !junk.includes([n_x, n_y])
+              ) {
+                console.log(`Push ${[n_x, n_y]}`);
+                queue.push([n_x, n_y]);
+              }
+            }
+          });
+        }
+      }
+
       scoreboard = {
         right: {
           ...state.scoreboard.right,
@@ -114,7 +157,10 @@ const rootReducer = (state = {}, action) => {
         scoreboard: scoreboard,
       };
     case NEW_GAME:
-      return {...state, ...action.payload};
+      return {
+        ...state,
+        ...action.payload,
+      };
 
     default:
       return state;

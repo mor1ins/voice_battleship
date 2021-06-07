@@ -19,7 +19,7 @@ export function* gameCompleted() {
     const completed = yield select(isCompleted);
     if (completed) {
       Tts.speak('Ты победил, поздравляю.');
-      Alert.alert('Игра окончена', 'Новая начнется через 3 сек'); // you can push task to macrotasks queue via setTimeout if operation is huge
+      // Alert.alert('Игра окончена', 'Новая начнется через 3 сек'); // you can push task to macrotasks queue via setTimeout if operation is huge
       yield delay(3000);
       yield put(NewGame(getInitialState()));
     }

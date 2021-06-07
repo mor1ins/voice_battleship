@@ -97,9 +97,7 @@ export const BattleCellPure = ({
       return <Image style={cellStyle} source={hitImg} />;
     } else {
       Tts.speak('Мимо');
-      store.dispatch(
-        Turn([Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)]),
-      );
+      store.dispatch(Turn());
       return <Image style={cellStyle} source={missImg} />;
     }
   })(shotResult);
